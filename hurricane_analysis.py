@@ -1,4 +1,26 @@
-def list_of_updated_damages(list_to_change):     #This function iterate through the list return new list with float numbers
+#This function makes a dictionary from all lists we have
+def construct_a_dictionary(names, month, year, max_sustained_wind, 
+                           area_affected, damage, death):
+
+    hurricane_dictionary = {}
+    
+    #each hurricane have information such as month and year it appeared, 
+    #damage caused and so one
+    for name in range(0, len(names)):
+        hurricane_dictionary[name] = {
+        "month": month[name], 
+        "year": year[name], 
+        "max sustained wind": max_sustained_wind[name], 
+        "affected area": area_affected[name], 
+        "damage": damage[name], 
+        "deaths": death[name]
+        }
+
+    return hurricane_dictionary
+
+#This function returns new list with float numbers
+def list_of_updated_damages(list_to_change):
+    
     updated_list = []
 
     for value in list_to_change:
@@ -40,3 +62,8 @@ damages = ['Damages not recorded', '100M', 'Damages not recorded', '40M', '27.9M
 
 # deaths for each hurricane
 deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,318,107,65,19325,51,124,17,1836,125,87,45,133,603,138,3057,74]
+
+updated_list_of_damages = list_of_updated_damages(damages)
+
+hurricane_dictionary = construct_a_dictionary(names, months, years, max_sustained_winds, areas_affected, updated_list_of_damages, deaths)
+#print(hurricane_dictionary) - if you want to watch all information we have about each hurricane
