@@ -1,3 +1,20 @@
+#This function returns a list with information how much area
+#has been affected by hurricane
+def how_often_is(area):
+    
+    new_dict = {}
+
+    for item in area:
+        for subitem in item:
+            #If we already have the are we'll add one
+            if subitem in new_dict:
+                new_dict[subitem] = 1 + new_dict[subitem]
+                continue
+            #If we don't have we'll set the default value
+            new_dict[subitem] = 1
+    
+    return new_dict
+
 #This function is supposed to return information 
 #about hurricane occurred in the year 
 #that has been given as parameter
@@ -83,3 +100,5 @@ updated_list_of_damages = list_of_updated_damages(damages)
 the_hurricane_dictionary = construct_a_dictionary(names, months, years, max_sustained_winds, areas_affected, updated_list_of_damages, deaths)
 
 search_for_year = the_hurricanes_by_year(the_hurricane_dictionary, 1932)
+
+how_much__are_was_affected = how_often_is(areas_affected)
