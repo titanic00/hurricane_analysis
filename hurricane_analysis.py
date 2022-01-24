@@ -1,3 +1,43 @@
+#The function calculates mortality rating each hurricane
+def mortality_rating(dict):
+    #mortality_scale: 0: 0,
+    #               1: 100,
+     #              2: 500,
+      #             3: 1000,
+       #            4: 10000
+    
+    calculated_rating = {0:[], 1:[], 2:[], 3:[], 4:[]}
+    
+    for key, value in dict.items():
+        if value["deaths"] < 100:
+            calculated_rating[0].append(key)
+        elif value["deaths"] >= 100 and value["deaths"] < 500:
+            calculated_rating[1].append(key)
+        elif value["deaths"] >= 500 and value["deaths"] < 1000:
+            calculated_rating[2].append(key)
+        elif value["deaths"] >= 1000 and value["deaths"] < 10000:
+            calculated_rating[3].append(key)
+        elif value["deaths"] >= 10000:
+            calculated_rating[4].append(key)
+    
+    return calculated_rating
+
+#The function calculates the deadliest hurricane
+def the_deadliest_hurricane(dict):
+
+    possible_value = []
+    how_much_it_happened = 0
+
+    for key, value in dict.items():
+        if value["deaths"] > how_much_it_happened:
+            how_much_it_happened = value["deaths"]
+            possible_value = key
+    
+    the_result = {}
+    the_result[possible_value] = how_much_it_happened
+
+    return the_result
+
 #This function finds the most affected area
 def the_most_affected_area(area):
 
@@ -118,5 +158,9 @@ search_for_year = the_hurricanes_by_year(the_hurricane_dictionary, 1932)
 
 how_much__are_was_affected = how_often_is(areas_affected)
 
-test = the_most_affected_area(areas_affected)
-print(test)
+unlucky_area = the_most_affected_area(areas_affected)
+
+deadliest_hurricane = the_deadliest_hurricane(the_hurricane_dictionary)
+
+mortality_rating_of_hucalculated_rating = mortality_rating(the_hurricane_dictionary)
+
