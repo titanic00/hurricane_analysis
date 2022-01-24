@@ -1,3 +1,20 @@
+#This function reorganize the dictionary from names to years
+def reorganize_the_hurricanes_by_year(dictionary_to_change):
+
+    dictionary_organized_by_year = {}
+
+    for key, value in dictionary_to_change.items():
+        dictionary_organized_by_year[value["year"]] = {
+            "names": key,
+            "month": value["month"], 
+            "max sustained wind": value["max sustained wind"], 
+            "affected area": value["affected area"], 
+            "damage": value["damage"], 
+            "deaths": value["deaths"]
+        }
+    
+    return dictionary_organized_by_year
+
 #This function makes a dictionary from all lists we have
 def construct_a_dictionary(names, month, year, max_sustained_wind, 
                            area_affected, damage, death):
@@ -6,14 +23,14 @@ def construct_a_dictionary(names, month, year, max_sustained_wind,
     
     #each hurricane have information such as month and year it appeared, 
     #damage caused and so one
-    for name in range(0, len(names)):
-        hurricane_dictionary[name] = {
-        "month": month[name], 
-        "year": year[name], 
-        "max sustained wind": max_sustained_wind[name], 
-        "affected area": area_affected[name], 
-        "damage": damage[name], 
-        "deaths": death[name]
+    for index in range(0, len(names)):
+        hurricane_dictionary[names[index]] = {
+        "month": month[index], 
+        "year": year[index], 
+        "max sustained wind": max_sustained_wind[index], 
+        "affected area": area_affected[index], 
+        "damage": damage[index], 
+        "deaths": death[index]
         }
 
     return hurricane_dictionary
@@ -65,5 +82,7 @@ deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,3
 
 updated_list_of_damages = list_of_updated_damages(damages)
 
-hurricane_dictionary = construct_a_dictionary(names, months, years, max_sustained_winds, areas_affected, updated_list_of_damages, deaths)
-#print(hurricane_dictionary) - if you want to watch all information we have about each hurricane
+all_info = construct_a_dictionary(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
+
+test = reorganize_the_hurricanes_by_year(all_info)
+print(test)
