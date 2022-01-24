@@ -1,3 +1,18 @@
+#This function finds the most affected area
+def the_most_affected_area(area):
+
+    how_much_it_happened = 0
+    possible_area = []
+    for item in area:
+        if len(item) > how_much_it_happened:
+            how_much_it_happened = len(item)
+            possible_area = item
+    
+    the_result = {}
+    the_result[how_much_it_happened] = possible_area
+    
+    return the_result
+
 #This function returns a list with information how much area
 #has been affected by hurricane
 def how_often_is(area):
@@ -102,3 +117,6 @@ the_hurricane_dictionary = construct_a_dictionary(names, months, years, max_sust
 search_for_year = the_hurricanes_by_year(the_hurricane_dictionary, 1932)
 
 how_much__are_was_affected = how_often_is(areas_affected)
+
+test = the_most_affected_area(areas_affected)
+print(test)
