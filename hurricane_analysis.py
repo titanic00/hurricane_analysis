@@ -1,19 +1,16 @@
-#This function reorganize the dictionary from names to years
-def reorganize_the_hurricanes_by_year(dictionary_to_change):
+#This function is supposed to return information 
+#about hurricane occurred in the year 
+#that has been given as parameter
+def the_hurricanes_by_year(dict, year):
 
-    dictionary_organized_by_year = {}
-
-    for key, value in dictionary_to_change.items():
-        dictionary_organized_by_year[value["year"]] = {
-            "names": key,
-            "month": value["month"], 
-            "max sustained wind": value["max sustained wind"], 
-            "affected area": value["affected area"], 
-            "damage": value["damage"], 
-            "deaths": value["deaths"]
-        }
+    new_list = []
+    #With parameter 'year' we're searching for a match 
+    # through provided dictionary then we add it into new_list 
+    for key, value in dict.items():
+        if value["year"] == year:
+            new_list.append(dict[key])
     
-    return dictionary_organized_by_year
+    return new_list
 
 #This function makes a dictionary from all lists we have
 def construct_a_dictionary(names, month, year, max_sustained_wind, 
@@ -25,6 +22,7 @@ def construct_a_dictionary(names, month, year, max_sustained_wind,
     #damage caused and so one
     for index in range(0, len(names)):
         hurricane_dictionary[names[index]] = {
+        "name": names[index],
         "month": month[index], 
         "year": year[index], 
         "max sustained wind": max_sustained_wind[index], 
@@ -82,7 +80,6 @@ deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,3
 
 updated_list_of_damages = list_of_updated_damages(damages)
 
-all_info = construct_a_dictionary(names, months, years, max_sustained_winds, areas_affected, damages, deaths)
+the_hurricane_dictionary = construct_a_dictionary(names, months, years, max_sustained_winds, areas_affected, updated_list_of_damages, deaths)
 
-test = reorganize_the_hurricanes_by_year(all_info)
-print(test)
+search_for_year = the_hurricanes_by_year(the_hurricane_dictionary, 1932)
