@@ -1,3 +1,19 @@
+def the_greatest_damage(dict):
+
+    possible_value = []
+    costs = 0
+
+    for key, value in dict.items():
+        if value["damage"] != 'Damages not recorded':
+            if value["damage"] > costs:
+                costs = value["damage"]
+                possible_value = key
+    
+    the_result = {}
+    the_result[possible_value] = costs
+
+    return the_result
+
 #The function calculates mortality rating each hurricane
 def mortality_rating(dict):
     #mortality_scale: 0: 0,
@@ -164,3 +180,4 @@ deadliest_hurricane = the_deadliest_hurricane(the_hurricane_dictionary)
 
 mortality_rating_of_hucalculated_rating = mortality_rating(the_hurricane_dictionary)
 
+the_biggest_damage = the_greatest_damage(the_hurricane_dictionary)
